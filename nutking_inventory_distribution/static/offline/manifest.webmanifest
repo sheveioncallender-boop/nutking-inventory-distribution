@@ -1,0 +1,13 @@
+{
+  "name": "Nut King Offline Operations",
+  "short_name": "Nut King Ops",
+  "start_url": "/nutking/offline",
+  "scope": "/nutking/",
+  "display": "standalone",
+  "background_color": "#17120f",
+  "theme_color": "#ef1b23",
+  "icons": [
+    {"src": "/nutking_inventory_distribution/static/description/icon.png", "sizes": "128x128", "type": "image/png"},
+    {"src": "/nutking_inventory_distribution/static/description/icon-512.png", "sizes": "512x512", "type": "image/png"}
+  ]
+}

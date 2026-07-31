@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#ef1b23">
+  <link rel="manifest" href="/nutking/manifest.webmanifest">
+  <title>Nut King Offline Operations</title>
+  <style>
+    :root{--red:#ef1b23;--yellow:#ffc928;--ink:#17120f;--paper:#fffdf7;--muted:#6b625d}
+    *{box-sizing:border-box}body{margin:0;background:#f2eee8;color:var(--ink);font-family:Inter,Arial,sans-serif}
+    .shell{max-width:900px;margin:auto;padding:18px}.hero{background:var(--ink);color:white;border-radius:22px;padding:22px;display:flex;align-items:center;gap:18px}
+    .hero img{width:180px}.hero h1{margin:0;font-size:25px}.hero p{margin:7px 0 0;color:#f4dca7}.status{margin:14px 0;padding:12px 14px;border-radius:12px;background:white;font-weight:800;display:flex;justify-content:space-between;gap:12px}
+    .online{color:#18864b}.offline{color:var(--red)}.card{background:white;border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 10px 28px #17120f12}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    label{display:block;font-size:11px;text-transform:uppercase;font-weight:900;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}input,select,textarea{width:100%;padding:13px;border:1px solid #dcd4cb;border-radius:10px;font:inherit;background:white}
+    button{border:0;border-radius:12px;padding:14px 18px;background:var(--red);color:white;font-weight:900;cursor:pointer}button.yellow{background:var(--yellow);color:var(--ink)}.row{display:flex;gap:10px;flex-wrap:wrap}.queue-item{border-top:1px solid #eee3d8;padding:12px 0}.small{font-size:12px;color:var(--muted)}.message{min-height:20px;font-weight:700}.error{color:var(--red)}
+    @media(max-width:650px){.grid{grid-template-columns:1fr}.hero{align-items:flex-start;flex-direction:column}.hero img{width:155px}.status{align-items:flex-start;flex-direction:column}}
+  </style>
+</head>
+<body>
+<main class="shell">
+  <section class="hero"><img src="/nutking_inventory_distribution/static/img/nutking_logo.svg" alt="The Nut Kings"><div><h1>Offline Operations</h1><p>Scan now. Synchronize safely when the internet returns.</p></div></section>
+  <div class="status"><span id="connection">Checking connection…</span><span id="pending">0 waiting</span></div>
+  <section class="card">
+    <h2>Record Stock Movement</h2>
+    <div class="grid">
+      <div><label for="operation">Operation</label><select id="operation">
+        <option value="raw_receipt">Receive Raw Materials</option><option value="raw_issue">Issue Raw Materials</option><option value="raw_supplier_return">Return Raw Materials to Supplier</option><option value="raw_damage">Damaged Raw Materials</option><option value="raw_expired">Expired Raw Materials</option>
+        <option value="finished_add">Add Finished Goods</option><option value="truck_load">Load Truck</option><option value="customer_delivery">Customer Delivery</option><option value="truck_return">Truck Return</option><option value="customer_return">Customer Return</option><option value="finished_damage">Damaged Finished Goods</option>
+      </select></div>
+      <div><label for="barcode">Product Barcode</label><input id="barcode" autocomplete="off" autofocus placeholder="Scan barcode"></div>
+      <div><label for="quantity">Quantity</label><input id="quantity" type="number" min="0.001" step="0.001" value="1"></div>
+      <div><label for="trip">Distribution Trip</label><select id="trip"><option value="">Not applicable</option></select></div>
+      <div><label for="truck">Truck</label><select id="truck"><option value="">Not applicable</option></select></div>
+      <div><label for="partner">Customer / Supplier</label><select id="partner"><option value="">Not applicable</option></select></div>
+      <div><label for="reason">Movement Reason</label><select id="reason"><option value="">Not applicable</option></select></div>
+      <div><label for="lot">Batch / Lot Reference</label><input id="lot" placeholder="Optional"></div>
+    </div>
+    <div style="margin-top:12px"><label for="notes">Notes</label><textarea id="notes" rows="2"></textarea></div>
+    <div class="row" style="margin-top:14px"><button id="save">Save Transaction</button><button class="yellow" id="sync">Synchronize Now</button></div>
+    <p id="message" class="small message"></p>
+  </section>
+  <section class="card"><h2>Waiting Transactions</h2><div id="queue"><p class="small">Nothing waiting to synchronize.</p></div></section>
+</main>
+<script src="/nutking_inventory_distribution/static/offline/app.js"></script>
+</body>
+</html>
