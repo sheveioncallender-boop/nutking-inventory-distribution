@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="action_nutking_rapid_raw_receipt" model="ir.actions.act_url">
+        <field name="name">Rapid Receive Raw Materials</field>
+        <field name="url">/nutking/rapid-scan?operation_type=raw_receipt</field>
+        <field name="target">self</field>
+    </record>
+    <record id="action_nutking_rapid_raw_issue" model="ir.actions.act_url">
+        <field name="name">Rapid Issue Raw Materials</field>
+        <field name="url">/nutking/rapid-scan?operation_type=raw_issue</field>
+        <field name="target">self</field>
+    </record>
+    <record id="action_nutking_rapid_finished_receipt" model="ir.actions.act_url">
+        <field name="name">Rapid Receive Finished Goods</field>
+        <field name="url">/nutking/rapid-scan?operation_type=finished_add</field>
+        <field name="target">self</field>
+    </record>
+    <record id="action_nutking_rapid_finished_issue" model="ir.actions.act_url">
+        <field name="name">Rapid Issue Finished Goods</field>
+        <field name="url">/nutking/rapid-scan?operation_type=finished_issue</field>
+        <field name="target">self</field>
+    </record>
+</odoo>
