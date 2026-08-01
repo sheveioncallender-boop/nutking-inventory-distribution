@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_nutking_operation_document">
+        <t t-call="web.html_container"><t t-foreach="docs" t-as="o"><t t-call="web.external_layout"><div class="page">
+            <div style="border-top:8px solid #ef1b23;padding-top:14px;display:flex;justify-content:space-between;align-items:center;"><div><h2 style="color:#17120f;margin:0;">Nut King Stock Operation</h2><p style="margin:4px 0;color:#6b625d;">Sesame Foods Limited</p><h3 t-field="o.name"/></div><img src="/nutking_inventory_distribution/static/img/nutking_logo.png" style="max-width:180px;max-height:70px;" alt="The Nut Kings"/></div>
+            <table class="table table-sm"><tbody><tr><th>Operation</th><td t-field="o.operation_type"/></tr><tr><th>Date</th><td t-field="o.operation_date"/></tr><tr><th>Supplier / Customer</th><td t-field="o.partner_id"/></tr><tr><th>Truck</th><td t-field="o.truck_id"/></tr><tr><th>Reason</th><td t-field="o.reason_id"/></tr><tr><th>Processed By</th><td t-field="o.user_id"/></tr></tbody></table>
+            <table class="table table-sm table-bordered"><thead style="background:#ffc928;"><tr><th>Product</th><th>Barcode</th><th>Quantity</th><th>UoM</th><th>Batch / Lot</th></tr></thead><tbody><tr t-foreach="o.line_ids" t-as="line"><td t-field="line.product_id"/><td t-field="line.barcode"/><td t-field="line.quantity"/><td t-field="line.product_uom_id"/><td t-field="line.lot_reference"/></tr></tbody></table>
+            <p><strong>Notes:</strong> <span t-field="o.notes"/></p>
+        </div></t></t></t>
+    </template>
+    <template id="report_nutking_trip_document">
+        <t t-call="web.html_container"><t t-foreach="docs" t-as="o"><t t-call="web.external_layout"><div class="page">
+            <div style="border-top:8px solid #ef1b23;padding-top:14px;display:flex;justify-content:space-between;align-items:center;"><div><h2 style="margin:0;">Nut King Distribution Trip</h2><p style="margin:4px 0;color:#6b625d;">Sesame Foods Limited</p><h3 t-field="o.name"/></div><img src="/nutking_inventory_distribution/static/img/nutking_logo.png" style="max-width:180px;max-height:70px;" alt="The Nut Kings"/></div>
+            <table class="table table-sm"><tbody><tr><th>Truck</th><td t-field="o.truck_id"/></tr><tr><th>Driver</th><td t-field="o.driver_id"/></tr><tr><th>Route</th><td t-field="o.route_name"/></tr><tr><th>Departure</th><td t-field="o.actual_departure"/></tr><tr><th>Return</th><td t-field="o.actual_return"/></tr></tbody></table>
+            <table class="table table-sm table-bordered"><thead style="background:#ffc928;"><tr><th>Product</th><th>Loaded</th><th>Delivered</th><th>Returned</th><th>Damaged</th><th>Variance</th></tr></thead><tbody><tr t-foreach="o.line_ids" t-as="line"><td t-field="line.product_id"/><td t-field="line.qty_loaded"/><td t-field="line.qty_delivered"/><td t-field="line.qty_returned"/><td t-field="line.qty_damaged"/><td t-field="line.variance"/></tr></tbody></table>
+            <p><strong>Variance Explanation:</strong> <span t-field="o.variance_explanation"/></p>
+        </div></t></t></t>
+    </template>
+</odoo>
