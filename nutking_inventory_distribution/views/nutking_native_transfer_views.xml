@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_stock_picking_form_nutking" model="ir.ui.view">
+        <field name="name">stock.picking.form.nutking.hybrid</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="(//field[@name='partner_id' and @nolabel='1'])[1]" position="after">
+                <field name="nutking_is_operation" invisible="1"/>
+                <field name="nutking_operation_kind" invisible="not nutking_is_operation"/>
+                <field name="nutking_truck_id" invisible="not nutking_is_operation"/>
+                <field name="nutking_trip_id" invisible="not nutking_is_operation"/>
+                <field name="nutking_reason_id" invisible="not nutking_is_operation"/>
+                <field name="nutking_source_reference" invisible="not nutking_is_operation"/>
+            </xpath>
+            <xpath expr="//page[@name='extra']" position="inside">
+                <group string="Nut King Audit" invisible="not nutking_is_operation">
+                    <field name="nutking_offline_uid" readonly="1"/>
+                    <field name="nutking_device_name" readonly="1"/>
+                    <field name="nutking_created_offline" readonly="1"/>
+                    <field name="nutking_operation_id" readonly="1"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_stock_picking_search_nutking" model="ir.ui.view">
+        <field name="name">stock.picking.search.nutking.hybrid</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='name']" position="after">
+                <field name="nutking_operation_kind"/>
+                <field name="nutking_truck_id"/>
+                <field name="nutking_trip_id"/>
+            </xpath>
+            <xpath expr="//filter[@name='status']" position="before">
+                <filter string="Nut King Transfers" name="nutking_transfers" domain="[('nutking_is_operation', '=', True)]"/>
+                <filter string="Customer / Company" name="group_nutking_partner" context="{'group_by': 'partner_id'}"/>
+                <filter string="Truck" name="group_nutking_truck" context="{'group_by': 'nutking_truck_id'}"/>
+                <filter string="Trip" name="group_nutking_trip" context="{'group_by': 'nutking_trip_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="action_nutking_native_transfers" model="ir.actions.act_window">
+        <field name="name">Nut King Transfers</field>
+        <field name="res_model">stock.picking</field>
+        <field name="view_mode">list,kanban,form,calendar</field>
+        <field name="domain">[('nutking_is_operation', '=', True)]</field>
+        <field name="context">{'contact_display': 'partner_address', 'search_default_nutking_transfers': 1}</field>
+        <field name="search_view_id" ref="stock.view_picking_internal_search"/>
+    </record>
+</odoo>

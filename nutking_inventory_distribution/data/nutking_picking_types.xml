@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <!-- Native Odoo operation types used by the hybrid Nut King workspace. -->
+    <record id="picking_type_nutking_raw_receipt" model="stock.picking.type">
+        <field name="name">Nut King: Receive Raw Materials</field>
+        <field name="sequence_code">NK-RMR</field>
+        <field name="code">incoming</field>
+        <field name="default_location_src_id" ref="stock.stock_location_suppliers"/>
+        <field name="default_location_dest_id" ref="location_rm_stock"/>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="show_operations">1</field>
+        <field name="use_create_lots">1</field>
+        <field name="use_existing_lots">1</field>
+        <field name="create_backorder">ask</field>
+    </record>
+
+    <record id="picking_type_nutking_raw_issue" model="stock.picking.type">
+        <field name="name">Nut King: Issue Raw Materials</field>
+        <field name="sequence_code">NK-RMI</field>
+        <field name="code">internal</field>
+        <field name="default_location_src_id" ref="location_rm_stock"/>
+        <field name="default_location_dest_id" ref="location_rm_issued"/>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="reservation_method">manual</field>
+        <field name="show_operations">1</field>
+        <field name="use_existing_lots">1</field>
+        <field name="create_backorder">ask</field>
+    </record>
+
+    <record id="picking_type_nutking_finished_receipt" model="stock.picking.type">
+        <field name="name">Nut King: Receive Finished Goods</field>
+        <field name="sequence_code">NK-FGR</field>
+        <field name="code">incoming</field>
+        <field name="default_location_src_id" ref="location_nutking_adjustment"/>
+        <field name="default_location_dest_id" ref="location_fg_stock"/>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="show_operations">1</field>
+        <field name="use_create_lots">1</field>
+        <field name="use_existing_lots">1</field>
+        <field name="create_backorder">ask</field>
+    </record>
+
+    <record id="picking_type_nutking_finished_truck" model="stock.picking.type">
+        <field name="name">Nut King: Finished Goods to Truck</field>
+        <field name="sequence_code">NK-TRK</field>
+        <field name="code">internal</field>
+        <field name="default_location_src_id" ref="location_fg_stock"/>
+        <field name="default_location_dest_id" ref="location_fg_issued"/>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="reservation_method">manual</field>
+        <field name="show_operations">1</field>
+        <field name="use_existing_lots">1</field>
+        <field name="create_backorder">ask</field>
+    </record>
+
+    <record id="picking_type_nutking_customer_delivery" model="stock.picking.type">
+        <field name="name">Nut King: Customer Delivery</field>
+        <field name="sequence_code">NK-DEL</field>
+        <field name="code">outgoing</field>
+        <field name="default_location_src_id" ref="location_fg_stock"/>
+        <field name="default_location_dest_id" ref="stock.stock_location_customers"/>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="reservation_method">manual</field>
+        <field name="show_operations">1</field>
+        <field name="use_existing_lots">1</field>
+        <field name="create_backorder">ask</field>
+    </record>
+
+    <record id="picking_type_nutking_truck_return" model="stock.picking.type">
+        <field name="name">Nut King: Return Truck Stock</field>
+        <field name="sequence_code">NK-RET</field>
+        <field name="code">internal</field>
+        <field name="default_location_src_id" ref="location_fg_stock"/>
+        <field name="default_location_dest_id" ref="location_fg_stock"/>
+        <field name="company_id" ref="base.main_company"/>
+        <field name="reservation_method">manual</field>
+        <field name="show_operations">1</field>
+        <field name="use_existing_lots">1</field>
+        <field name="create_backorder">ask</field>
+    </record>
+</odoo>
