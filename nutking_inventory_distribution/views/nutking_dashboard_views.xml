@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_nutking_dashboard_form" model="ir.ui.view">
+        <field name="name">nutking.dashboard.form</field>
+        <field name="model">nutking.dashboard</field>
+        <field name="arch" type="xml">
+            <form create="0" edit="0" delete="0" class="o_nutking_dashboard_form">
+                <sheet>
+                    <div class="nk_dashboard_hero">
+                        <img src="/nutking_inventory_distribution/static/img/nutking_logo.png" class="nk_dashboard_logo" alt="The Nut Kings"/>
+                        <div>
+                            <h1>Inventory &amp; Distribution</h1>
+                            <p>A commitment to excellence in every movement.</p>
+                        </div>
+                    </div>
+                    <div class="nk_kpi_grid">
+                        <div class="nk_kpi"><span>Raw Material Products</span><field name="raw_product_count" nolabel="1"/></div>
+                        <div class="nk_kpi"><span>Finished Products</span><field name="finished_product_count" nolabel="1"/></div>
+                        <div class="nk_kpi"><span>Active Trucks</span><field name="truck_count" nolabel="1"/></div>
+                        <div class="nk_kpi"><span>Open Trips</span><field name="open_trip_count" nolabel="1"/></div>
+                        <div class="nk_kpi"><span>Pending Operations</span><field name="pending_operation_count" nolabel="1"/></div>
+                        <div class="nk_kpi nk_warning"><span>Low Stock Items</span><field name="low_stock_count" nolabel="1"/></div>
+                        <div class="nk_kpi"><span>Stock on Trucks</span><field name="stock_on_trucks_qty" nolabel="1"/></div>
+                        <div class="nk_kpi"><span>Offline Exceptions</span><field name="offline_pending_count" nolabel="1"/></div>
+                    </div>
+                    <h2 class="nk_section_title">Quick Operations</h2>
+                    <div class="nk_action_grid">
+                        <button name="action_receive_raw" type="object" class="nk_action_card" groups="nutking_inventory_distribution.group_nutking_raw_clerk,base.group_system"><i class="fa fa-download"/><span>Rapid Receive Raw Materials</span></button>
+                        <button name="action_issue_raw" type="object" class="nk_action_card" groups="nutking_inventory_distribution.group_nutking_raw_clerk,base.group_system"><i class="fa fa-upload"/><span>Rapid Issue Raw Materials</span></button>
+                        <button name="action_add_finished" type="object" class="nk_action_card" groups="nutking_inventory_distribution.group_nutking_finished_clerk,base.group_system"><i class="fa fa-cubes"/><span>Rapid Receive Finished Goods</span></button>
+                        <button name="action_issue_finished" type="object" class="nk_action_card" groups="nutking_inventory_distribution.group_nutking_finished_clerk,base.group_system"><i class="fa fa-share-square-o"/><span>Rapid Issue Finished Goods</span></button>
+                        <button name="action_raw_physical_inventory" type="object" class="nk_action_card" groups="nutking_inventory_distribution.group_nutking_raw_clerk,base.group_system"><i class="fa fa-check-square-o"/><span>Raw Physical Inventory</span></button>
+                        <button name="action_finished_physical_inventory" type="object" class="nk_action_card" groups="nutking_inventory_distribution.group_nutking_finished_clerk,base.group_system"><i class="fa fa-clipboard"/><span>Finished Physical Inventory</span></button>
+                        <button name="action_trips" type="object" class="nk_action_card" groups="nutking_inventory_distribution.group_nutking_distribution,base.group_system"><i class="fa fa-truck"/><span>Distribution Trips</span></button>
+                        <button name="action_operations" type="object" class="nk_action_card" groups="nutking_inventory_distribution.group_nutking_supervisor,base.group_system"><i class="fa fa-exchange"/><span>All Stock Operations</span></button>
+                        <button name="action_offline" type="object" class="nk_action_card nk_action_dark" groups="nutking_inventory_distribution.group_nutking_user,base.group_system"><i class="fa fa-wifi"/><span>Offline Workspace</span></button>
+                    </div>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <record id="action_nutking_dashboard" model="ir.actions.act_window">
+        <field name="name">Nut King Dashboard</field>
+        <field name="res_model">nutking.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="res_id" ref="nutking_dashboard_main"/>
+        <field name="target">current</field>
+    </record>
+    <record id="action_nutking_admin_quick_operations" model="ir.actions.act_window">
+        <field name="name">Quick Operations</field>
+        <field name="res_model">nutking.dashboard</field>
+        <field name="view_mode">form</field>
+        <field name="res_id" ref="nutking_dashboard_main"/>
+        <field name="target">current</field>
+        <field name="group_ids" eval="[(4, ref('base.group_system'))]"/>
+    </record>
+
+</odoo>

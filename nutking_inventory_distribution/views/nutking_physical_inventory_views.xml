@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- These actions deliberately call Odoo's native stock.quant physical inventory
+         workflow, while limiting each menu to the correct Nut King stock location. -->
+    <record id="action_nutking_raw_physical_inventory" model="ir.actions.server">
+        <field name="name">Raw Materials Physical Inventory</field>
+        <field name="model_id" ref="stock.model_stock_quant"/>
+        <field name="state">code</field>
+        <field name="group_ids" eval="[(4, ref('nutking_inventory_distribution.group_nutking_raw_clerk'))]"/>
+        <field name="code">action = model.action_nutking_raw_physical_inventory()</field>
+    </record>
+
+    <record id="action_nutking_finished_physical_inventory" model="ir.actions.server">
+        <field name="name">Finished Goods Physical Inventory</field>
+        <field name="model_id" ref="stock.model_stock_quant"/>
+        <field name="state">code</field>
+        <field name="group_ids" eval="[(4, ref('nutking_inventory_distribution.group_nutking_finished_clerk'))]"/>
+        <field name="code">action = model.action_nutking_finished_physical_inventory()</field>
+    </record>
+</odoo>
