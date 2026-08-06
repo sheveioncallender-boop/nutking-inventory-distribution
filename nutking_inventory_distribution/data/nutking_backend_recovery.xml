@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Runs on install and every upgrade. It removes stale worker-role
+         memberships from Settings administrators and clears any stale
+         home action, so /web opens Odoo's normal backend and never the worker PWA. -->
+    <function model="res.users" name="nutking_recover_system_administrators"/>
+</odoo>

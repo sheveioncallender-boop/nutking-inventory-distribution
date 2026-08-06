@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="reason_operational_use" model="nutking.movement.reason"><field name="name">Issued for Operational Use</field><field name="code">OP_USE</field><field name="applies_to">raw</field></record>
+    <record id="reason_department_request" model="nutking.movement.reason"><field name="name">Department Request</field><field name="code">DEPT_REQ</field><field name="applies_to">raw</field></record>
+    <record id="reason_damaged" model="nutking.movement.reason"><field name="name">Damaged</field><field name="code">DAMAGED</field><field name="applies_to">all</field><field name="requires_note">1</field></record>
+    <record id="reason_expired" model="nutking.movement.reason"><field name="name">Expired</field><field name="code">EXPIRED</field><field name="applies_to">all</field></record>
+    <record id="reason_supplier_return" model="nutking.movement.reason"><field name="name">Returned to Supplier</field><field name="code">SUP_RETURN</field><field name="applies_to">raw</field></record>
+    <record id="reason_finished_internal_use" model="nutking.movement.reason"><field name="name">Finished Goods Internal Use</field><field name="code">FG_INTERNAL</field><field name="applies_to">finished</field><field name="requires_note">1</field></record>
+    <record id="reason_finished_direct_issue" model="nutking.movement.reason"><field name="name">Direct Finished Goods Issue</field><field name="code">FG_DIRECT</field><field name="applies_to">finished</field><field name="requires_note">1</field></record>
+    <record id="reason_unsold_return" model="nutking.movement.reason"><field name="name">Unsold Truck Return</field><field name="code">TRUCK_RETURN</field><field name="applies_to">distribution</field></record>
+    <record id="reason_customer_return" model="nutking.movement.reason"><field name="name">Customer Return</field><field name="code">CUST_RETURN</field><field name="applies_to">distribution</field><field name="requires_note">1</field></record>
+    <record id="reason_promotion" model="nutking.movement.reason"><field name="name">Promotional / Sample Stock</field><field name="code">PROMO</field><field name="applies_to">all</field><field name="requires_note">1</field></record>
+    <record id="reason_stock_correction" model="nutking.movement.reason"><field name="name">Stock Count Correction</field><field name="code">COUNT_ADJ</field><field name="applies_to">all</field><field name="requires_note">1</field><field name="requires_supervisor">1</field></record>
+    <record id="reason_missing" model="nutking.movement.reason"><field name="name">Missing / Unexplained</field><field name="code">MISSING</field><field name="applies_to">all</field><field name="requires_note">1</field><field name="requires_supervisor">1</field></record>
+</odoo>
