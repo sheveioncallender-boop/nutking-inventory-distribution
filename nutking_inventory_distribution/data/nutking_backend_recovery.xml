@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<odoo>
-    <!-- Runs on install and every upgrade. It removes stale worker-role
-         memberships from Settings administrators and assigns a backend-only
-         home action, so /web never reopens the Nut King worker PWA. -->
-    <function model="res.users" name="nutking_recover_system_administrators"/>
-</odoo>
